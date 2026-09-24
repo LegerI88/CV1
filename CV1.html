@@ -1,0 +1,725 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Mon CV pour la PFMP</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Lexend:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --ink:#1d2b4f; --ink-soft:#4a5878; --bg:#eef1f6; --panel:#ffffff; --line:#d5dbe7;
+  --hl:#fde68a; --hl-ink:#6b4e00; --ok:#2f7d57; --focus:#2563eb; --field:#f8fafc; --warn:#b45309;
+  box-sizing:border-box;
+  padding-top:env(safe-area-inset-top,0px); padding-bottom:env(safe-area-inset-bottom,0px);
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --ink:#e6ebf5; --ink-soft:#a9b4cc; --bg:#141b2b; --panel:#1d263a; --line:#33405c;
+    --ok:#5fc28f; --focus:#7aa7ff; --field:#18202f; --warn:#f0a35e;
+  }
+}
+:root[data-theme="dark"]{
+  --ink:#e6ebf5; --ink-soft:#a9b4cc; --bg:#141b2b; --panel:#1d263a; --line:#33405c;
+  --ok:#5fc28f; --focus:#7aa7ff; --field:#18202f; --warn:#f0a35e;
+}
+*,*::before,*::after{box-sizing:inherit}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:"Lexend",system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;font-size:15px;line-height:1.5}
+header.top{padding:22px 20px 8px;max-width:1400px;margin:0 auto}
+header.top h1{margin:0;font-size:1.6rem;font-weight:700;letter-spacing:-.01em}
+header.top p{margin:6px 0 0;color:var(--ink-soft);max-width:70ch}
+header.top p.auteur{margin:4px 0 0;font-size:.9rem;font-weight:500;color:var(--ink)}
+header.top .hl{background:var(--hl);color:var(--hl-ink);padding:0 4px;border-radius:3px}
+.wrap{max-width:1400px;margin:0 auto;padding:12px 20px 40px;display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.05fr);gap:24px;align-items:start}
+@media (max-width:980px){.wrap{grid-template-columns:1fr}}
+.step{background:var(--panel);border:1px solid var(--line);border-radius:14px;margin-bottom:14px;overflow:hidden}
+.step>summary{list-style:none;cursor:pointer;display:flex;align-items:center;gap:12px;padding:14px 16px;font-weight:600;font-size:1.05rem}
+.step>summary::-webkit-details-marker{display:none}
+.step>summary .n{flex:none;width:30px;height:30px;border-radius:50%;display:grid;place-items:center;background:var(--ink);color:var(--panel);font-size:.9rem}
+.step>summary .st{margin-left:auto;font-size:.8rem;font-weight:500;color:var(--ink-soft)}
+.step>summary .st.done{color:var(--ok)}
+.step[open]>summary{border-bottom:1px solid var(--line)}
+.body{padding:14px 16px 16px}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:10px 12px}
+.grid3{display:grid;grid-template-columns:1.2fr 1fr;gap:10px 12px}
+@media (max-width:520px){.grid2,.grid3{grid-template-columns:1fr}}
+.full{grid-column:1/-1}
+label.f{display:flex;flex-direction:column;gap:4px;font-size:.88rem;color:var(--ink-soft)}
+input[type=text],input[type=email],input[type=tel],input[type=date],input[type=number],select,textarea{
+  font:inherit;font-size:.95rem;color:var(--ink);background:var(--field);border:1px solid var(--line);border-radius:8px;padding:9px 10px;width:100%}
+textarea{min-height:70px;resize:vertical}
+input:focus-visible,select:focus-visible,textarea:focus-visible,button:focus-visible,summary:focus-visible{outline:3px solid var(--focus);outline-offset:2px}
+.chips label:has(input:focus-visible),.opt:has(input:focus-visible),.swatch:has(input:focus-visible){outline:3px solid var(--focus);outline-offset:2px}
+.tip{font-size:.83rem;color:var(--ink-soft);margin:10px 0 0;padding-left:10px;border-left:3px solid var(--hl)}
+.seg{display:flex;gap:8px;flex-wrap:wrap}
+.seg label{display:flex;align-items:center;gap:6px;border:1px solid var(--line);border-radius:999px;padding:6px 12px;cursor:pointer;background:var(--field);font-size:.9rem}
+.seg input{accent-color:var(--ink)}
+.q{margin:16px 0 6px;font-weight:600;font-size:.95rem}
+.q:first-child{margin-top:0}
+.opts{display:flex;flex-direction:column;gap:8px}
+.opt{display:flex;gap:10px;align-items:flex-start;border:1px solid var(--line);border-radius:10px;padding:10px 12px;cursor:pointer;background:var(--field);font-size:.9rem;line-height:1.45}
+.opt input{margin-top:3px;accent-color:var(--ink);flex:none}
+.opt:has(input:checked){border-color:var(--ink);box-shadow:inset 4px 0 0 var(--ink)}
+.chips{display:flex;flex-wrap:wrap;gap:8px}
+.chips label{position:relative;display:flex;align-items:center;gap:6px;border:1px solid var(--line);border-radius:999px;padding:5px 11px;cursor:pointer;background:var(--field);font-size:.86rem}
+.chips label:has(input:checked){background:var(--ink);color:var(--panel);border-color:var(--ink)}
+.chips input{position:absolute;opacity:0;width:1px;height:1px}
+.count{font-size:.83rem;margin-top:6px;color:var(--ink-soft)}
+.count.warn{color:var(--warn)}
+.item{border:1px dashed var(--line);border-radius:10px;padding:12px;margin-bottom:10px}
+.itemHead{display:flex;justify-content:space-between;align-items:center;margin-bottom:8px;font-weight:600;font-size:.92rem}
+.lang{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:8px}
+button{font:inherit;border-radius:10px;padding:11px 16px;cursor:pointer;border:1px solid var(--ink)}
+button.small{padding:5px 10px;font-size:.82rem;border-radius:8px}
+.btn-main{background:var(--ink);color:var(--panel);font-weight:600;font-size:1rem}
+.btn-sec{background:transparent;color:var(--ink)}
+.actions{display:flex;flex-wrap:wrap;gap:10px;margin-top:6px}
+.missing{margin-top:12px;font-size:.88rem;background:var(--hl);color:var(--hl-ink);border-radius:8px;padding:10px 12px;display:none}
+.missing.show{display:block}
+.missing ul{margin:6px 0 0;padding-left:18px}
+.saved{font-size:.8rem;color:var(--ink-soft);margin-top:8px}
+.swatches{display:flex;gap:10px;flex-wrap:wrap}
+.swatch{position:relative;display:flex;align-items:center;gap:8px;border:1px solid var(--line);border-radius:999px;padding:5px 12px 5px 6px;cursor:pointer;background:var(--field);font-size:.88rem}
+.swatch i{width:22px;height:22px;border-radius:50%;display:block}
+.swatch:has(input:checked){border-color:var(--ink);box-shadow:0 0 0 2px var(--ink) inset}
+.swatch input{position:absolute;opacity:0;width:1px;height:1px}
+.photoRow{display:flex;align-items:center;gap:12px;flex-wrap:wrap}
+.photoRow img{width:64px;height:80px;object-fit:cover;border-radius:6px;border:1px solid var(--line)}
+/* Aperçu */
+.previewCol{position:sticky;top:calc(12px + env(safe-area-inset-top,0px))}
+@media (max-width:980px){.previewCol{position:static}}
+.previewHead{display:flex;align-items:baseline;justify-content:space-between;gap:10px;margin:0 0 8px;flex-wrap:wrap}
+.previewHead h2{margin:0;font-size:1.05rem}
+.previewHead span{font-size:.82rem;color:var(--ink-soft)}
+.previewHead span.over{color:var(--warn);font-weight:600}
+.paperScroll{overflow-x:auto;border-radius:6px}
+/* Le CV */
+.cv{
+  --acc:#1f3a68; --tint:#eaf0f8;
+  background:#fff;color:#1a1a1a;width:210mm;min-height:297mm;max-width:100%;margin:0 auto;
+  display:grid;grid-template-columns:66mm 1fr;
+  font-family:Arial,Helvetica,"Liberation Sans",sans-serif;font-size:9.6pt;line-height:1.38;
+  box-shadow:0 1px 2px rgba(20,30,60,.12),0 12px 30px -12px rgba(20,30,60,.35);
+  -webkit-print-color-adjust:exact;print-color-adjust:exact}
+@media (max-width:640px){.cv{grid-template-columns:1fr;min-height:auto}}
+.cv .side{background:var(--tint);padding:12mm 7mm 10mm;border-right:3px solid var(--acc)}
+.cv .main{padding:12mm 10mm 10mm 9mm}
+.cv .photo{width:34mm;height:42mm;object-fit:cover;display:block;margin:0 auto 7mm;border-radius:3mm;border:2px solid var(--acc)}
+.cv h3{font-size:10.5pt;color:var(--acc);margin:0 0 2.5mm;padding-bottom:1.2mm;border-bottom:1.2px solid var(--acc)}
+.cv .blk{margin-bottom:6mm}
+.cv ul{margin:0;padding-left:4.5mm}
+.cv li{margin-bottom:1mm}
+.cv .side p{margin:0 0 1.2mm;overflow-wrap:anywhere}
+.cv .side .lbl{font-weight:700}
+.cv .name{font-family:"Lexend",Arial,Helvetica,sans-serif;font-size:21pt;font-weight:700;color:var(--acc);line-height:1.1;margin:0}
+.cv .forma{margin:2mm 0 0;font-size:10.5pt;font-weight:700}
+.cv .search{margin:3mm 0 6mm;background:var(--acc);color:#fff;padding:2.2mm 3.5mm;border-radius:1.5mm;font-weight:700;font-size:10pt}
+.cv .main p{margin:0 0 1.5mm}
+.cv .row{display:flex;justify-content:space-between;gap:4mm;font-weight:700}
+.cv .row .d{font-weight:400;color:#444;text-align:right;flex:none;max-width:45%}
+.cv .sub{color:#444;margin:0 0 1mm}
+.cv .entry{margin-bottom:3.5mm}
+.cv .cols{columns:2;column-gap:6mm}
+.cv .cols li{break-inside:avoid}
+mark.ph{background:#fde68a;color:#6b4e00;padding:0 2px;border-radius:2px}
+.cv .search mark.ph{color:#6b4e00}
+@media (prefers-reduced-motion:no-preference){.opt,.chips label,.swatch{transition:background .15s,border-color .15s}}
+@page{size:A4;margin:0}
+@media print{
+  :root{padding:0}
+  body{background:#fff}
+  header.top,.formCol,.previewHead{display:none!important}
+  .wrap{display:block;padding:0;max-width:none}
+  .previewCol{position:static}
+  .paperScroll{overflow:visible}
+  .cv{box-shadow:none;width:210mm;height:297mm;min-height:0;max-width:none;overflow:hidden;grid-template-columns:66mm 1fr}
+  mark.ph{background:none;color:#c00}
+}
+</style>
+</head>
+<body>
+<header class="top">
+  <h1>Mon CV pour la PFMP</h1>
+  <p class="auteur">Outil proposé par Mme LEGER Isabelle, professeure d'Éco-Gestion</p>
+  <p>Remplis les étapes à gauche : ton CV se construit tout seul à droite. Tout ce qui est <span class="hl">surligné en jaune</span> manque encore. À la fin, enregistre-le en PDF.</p>
+</header>
+
+<div class="wrap">
+<div class="formCol">
+
+<details class="step" open>
+  <summary><span class="n">1</span>Mes coordonnées<span class="st" id="st1"></span></summary>
+  <div class="body">
+    <div class="grid2">
+      <label class="f">Prénom<input type="text" id="prenom" autocomplete="given-name"></label>
+      <label class="f">Nom<input type="text" id="nom" autocomplete="family-name"></label>
+      <label class="f full">Adresse (numéro et rue)<input type="text" id="adresse" autocomplete="street-address"></label>
+      <label class="f">Code postal<input type="text" id="cp" inputmode="numeric" autocomplete="postal-code"></label>
+      <label class="f">Ville<input type="text" id="ville" autocomplete="address-level2"></label>
+      <label class="f">Téléphone<input type="tel" id="tel" autocomplete="tel"></label>
+      <label class="f">Adresse e-mail<input type="email" id="mail" autocomplete="email"></label>
+      <label class="f">Date de naissance<input type="date" id="naissance"></label>
+      <div class="full">
+        <div class="q">Accords dans le CV (ex. : motivé / motivée)</div>
+        <div class="seg">
+          <label><input type="radio" name="genre" value="f"> Au féminin</label>
+          <label><input type="radio" name="genre" value="m"> Au masculin</label>
+        </div>
+      </div>
+      <div class="full">
+        <div class="q">Photo (facultative)</div>
+        <div class="photoRow">
+          <img id="photoMini" alt="" style="display:none">
+          <input type="file" id="photoFile" accept="image/*">
+          <button type="button" class="btn-sec small" id="photoDel" style="display:none">Retirer la photo</button>
+        </div>
+      </div>
+    </div>
+    <p class="tip">La photo n'est pas obligatoire sur un CV. Si tu en mets une, choisis une photo sérieuse, de face, sur un fond clair. Utilise une adresse e-mail sérieuse, avec ton prénom et ton nom de préférence.</p>
+  </div>
+</details>
+
+<details class="step">
+  <summary><span class="n">2</span>Ma formation et ma PFMP<span class="st" id="st2"></span></summary>
+  <div class="body">
+    <div class="grid2">
+      <label class="f">Mon niveau
+        <select id="niveau">
+          <option value="">Choisis…</option>
+          <option value="2nde">Seconde professionnelle</option>
+          <option value="1re">Première professionnelle</option>
+          <option value="tle">Terminale professionnelle</option>
+          <option value="cap1">1re année de CAP</option>
+          <option value="cap2">2e année de CAP</option>
+        </select>
+      </label>
+      <label class="f">Ma filière<select id="filiere"></select></label>
+      <label class="f full" id="wrapFiliereAutre" style="display:none">Nom complet de ma formation
+        <input type="text" id="filiereAutre" placeholder="ex. : baccalauréat professionnel Logistique">
+      </label>
+      <label class="f">Nom du lycée<input type="text" id="lycee" placeholder="Lycée …"></label>
+      <label class="f">Ville du lycée<input type="text" id="villeLycee"></label>
+      <label class="f">Année scolaire<select id="anneeSco"></select></label>
+      <span></span>
+      <label class="f">PFMP du<input type="date" id="d1"></label>
+      <label class="f">au<input type="date" id="d2"></label>
+    </div>
+
+    <div class="q">Mes formations précédentes</div>
+    <div id="formsList"></div>
+    <button type="button" class="btn-sec small" id="addForm">Ajouter une formation</button>
+
+    <div class="q">Diplôme national du brevet</div>
+    <div class="grid3">
+      <label class="f">Résultat
+        <select id="dnb">
+          <option value="">Ne pas l'indiquer</option>
+          <option value="Obtenu">Obtenu</option>
+          <option value="Obtenu avec mention Assez bien">Obtenu, mention Assez bien</option>
+          <option value="Obtenu avec mention Bien">Obtenu, mention Bien</option>
+          <option value="Obtenu avec mention Très bien">Obtenu, mention Très bien</option>
+        </select>
+      </label>
+      <label class="f">Année<input type="text" id="dnbAnnee" placeholder="ex. : 2026"></label>
+    </div>
+
+    <div class="q">Attestations et certifications obtenues</div>
+    <div class="chips" id="certifs"></div>
+  </div>
+</details>
+
+<details class="step">
+  <summary><span class="n">3</span>Mes expériences<span class="st" id="st3"></span></summary>
+  <div class="body">
+    <div id="expsList"></div>
+    <button type="button" class="btn-sec small" id="addExp">Ajouter une expérience</button>
+    <p class="tip">Stage d'observation de 3e, PFMP, job d'été, bénévolat, aide dans un club ou une association : tout compte. Si tu n'as pas encore d'expérience, laisse cette partie vide, elle n'apparaîtra pas sur le CV.</p>
+  </div>
+</details>
+
+<details class="step">
+  <summary><span class="n">4</span>Mon profil et mes compétences<span class="st" id="st4"></span></summary>
+  <div class="body">
+    <div class="q">Ma phrase de présentation</div>
+    <div class="opts" id="o-profil"></div>
+
+    <div class="q">Mes qualités (choisis-en 3 à 5)</div>
+    <div class="chips" id="qualites"></div>
+    <div class="count" id="qCount"></div>
+
+    <div class="q">Mes compétences</div>
+    <div class="chips" id="competences"></div>
+
+    <div class="q">Informatique</div>
+    <div class="chips" id="info"></div>
+
+    <div class="q">Langues</div>
+    <div id="langs"></div>
+  </div>
+</details>
+
+<details class="step">
+  <summary><span class="n">5</span>Mobilité et centres d'intérêt<span class="st" id="st5"></span></summary>
+  <div class="body">
+    <div class="q">Comment je me déplace</div>
+    <div class="chips" id="mobilite"></div>
+    <div class="q">Mes centres d'intérêt (sois précis)</div>
+    <div class="grid2">
+      <label class="f full"><input type="text" id="ci1" placeholder="ex. : Handball en club depuis 4 ans"></label>
+      <label class="f full"><input type="text" id="ci2" placeholder="ex. : Cuisine : je prépare des gâteaux pour ma famille"></label>
+      <label class="f full"><input type="text" id="ci3" placeholder="ex. : Mode : je suis les nouvelles collections"></label>
+    </div>
+    <p class="tip">Évite « sortir avec mes amis » ou « jeux vidéo » tout seuls : précise ce que tu fais vraiment, cela montre ta personnalité.</p>
+  </div>
+</details>
+
+<details class="step" open>
+  <summary><span class="n">6</span>Couleur et enregistrement en PDF</summary>
+  <div class="body">
+    <div class="q">Couleur de mon CV</div>
+    <div class="swatches" id="swatches"></div>
+    <div class="actions" style="margin-top:16px">
+      <button class="btn-main" id="btnPdf" type="button">Enregistrer en PDF</button>
+      <button class="btn-sec" id="btnReset" type="button">Recommencer à zéro</button>
+    </div>
+    <div class="missing" id="missing"></div>
+    <p class="tip">Dans la fenêtre qui s'ouvre, choisis « Enregistrer au format PDF » comme imprimante. Dans « Plus de paramètres », coche « Graphiques d'arrière-plan » pour garder les couleurs et décoche « En-têtes et pieds de page ». Si rien ne s'ouvre, appuie sur Ctrl + P (ou Cmd + P sur Mac).</p>
+    <p class="saved" id="saved">Ton travail est gardé sur cet ordinateur, dans ce navigateur.</p>
+  </div>
+</details>
+</div>
+
+<div class="previewCol">
+  <div class="previewHead"><h2>Aperçu de mon CV</h2><span id="pageInfo">Format A4</span></div>
+  <div class="paperScroll"><div class="cv" id="cv"></div></div>
+</div>
+</div>
+
+<script>
+(function(){
+const $ = id => document.getElementById(id);
+const esc = s => String(s).replace(/[&<>"]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+const val = id => ($(id) ? $(id).value.trim() : "");
+const ph = label => `<mark class="ph">[${label}]</mark>`;
+const V = (id,label) => val(id) ? esc(val(id)) : ph(label);
+const radio = name => { const r = document.querySelector(`input[name="${name}"]:checked`); return r ? r.value : ""; };
+const G = (m,f) => radio("genre")==="f" ? f : (radio("genre")==="m" ? m : (m===f ? m : `${m} / ${f}`));
+const cap = s => s.charAt(0).toUpperCase()+s.slice(1);
+
+function frDate(v){
+  if(!v) return "";
+  const d = new Date(v+"T12:00:00");
+  if(isNaN(d)) return "";
+  const s = d.toLocaleDateString("fr-FR",{day:"numeric",month:"long",year:"numeric"});
+  return d.getDate()===1 ? s.replace(/^1 /,"1er ") : s;
+}
+function ageDe(v){
+  const b = new Date(v+"T12:00:00"), n = new Date();
+  if(isNaN(b)) return null;
+  let a = n.getFullYear() - b.getFullYear();
+  if(n.getMonth() < b.getMonth() || (n.getMonth()===b.getMonth() && n.getDate() < b.getDate())) a--;
+  return a;
+}
+function naissance(){
+  const v = val("naissance"); if(!v) return "";
+  const a = ageDe(v);
+  return `<p>${G("Né","Née")} le ${esc(frDate(v))}${a!==null && a>=0 ? ` (${a} ans)` : ""}</p>`;
+}
+function plage(a, b){
+  if(!a || !b) return `Du ${a ? esc(frDate(a)) : ph("date")} au ${b ? esc(frDate(b)) : ph("date")}`;
+  const A = new Date(a+"T12:00:00"), B = new Date(b+"T12:00:00");
+  const jour = d => d.getDate()===1 ? "1er" : String(d.getDate());
+  if(a===b) return `Le ${esc(frDate(a))}`;
+  if(A.getFullYear()===B.getFullYear() && A.getMonth()===B.getMonth()) return `Du ${jour(A)} au ${esc(frDate(b))}`;
+  if(A.getFullYear()===B.getFullYear()) return `Du ${jour(A)} ${A.toLocaleDateString("fr-FR",{month:"long"})} au ${esc(frDate(b))}`;
+  return `Du ${esc(frDate(a))} au ${esc(frDate(b))}`;
+}
+function periode(){
+  const a = frDate(val("d1")), b = frDate(val("d2"));
+  return `du ${a ? esc(a) : ph("date de début")} au ${b ? esc(b) : ph("date de fin")}`;
+}
+
+/* Formations (mêmes listes que la lettre) */
+const FILIERES = {
+  "2nde":[["mrc","Métiers de la relation client"],["autre","Autre formation…"]],
+  "1re":[["mcvA","Métiers du commerce et de la vente, option A (animation et gestion de l'espace commercial)"],["mcvB","Métiers du commerce et de la vente, option B (prospection clientèle et valorisation de l'offre commerciale)"],["accueil","Métiers de l'accueil"],["autre","Autre formation…"]],
+  "cap1":[["epc","Équipier polyvalent du commerce"],["autre","Autre formation…"]]
+};
+FILIERES["tle"]=FILIERES["1re"]; FILIERES["cap2"]=FILIERES["cap1"];
+const NIV = {"2nde":"seconde","1re":"première","tle":"terminale","cap1":"première année de","cap2":"deuxième année de"};
+const FNOM = {
+  mrc:"Métiers de la relation client",
+  mcvA:"Métiers du commerce et de la vente, option A Animation et gestion de l'espace commercial",
+  mcvB:"Métiers du commerce et de la vente, option B Prospection clientèle et valorisation de l'offre commerciale",
+  accueil:"Métiers de l'accueil",
+  epc:"Équipier polyvalent du commerce"
+};
+const NOWD = new Date(), SY = NOWD.getMonth() >= 7 ? NOWD.getFullYear() : NOWD.getFullYear()-1;
+function yearsOpts(sel, from, to){
+  let o = "";
+  for(let y = to; y >= from; y--){ const v = `${y}-${y+1}`; o += `<option ${v===sel?"selected":""}>${v}</option>`; }
+  return o;
+}
+const TROIS = {"3e":"Classe de 3e","3pm":"Classe de 3e prépa-métiers","3segpa":"Classe de 3e SEGPA"};
+const NIV_PREV = [["","Choisis…"],["3e","Classe de 3e"],["3pm","3e prépa-métiers"],["3segpa","3e SEGPA"],["2nde","Seconde professionnelle"],["1re","Première professionnelle"],["tle","Terminale professionnelle"],["cap1","1re année de CAP"],["cap2","2e année de CAP"]];
+function formText(n, f, autre){
+  if(!n) return "";
+  if(TROIS[n]) return esc(TROIS[n]);
+  const niv = NIV[n];
+  if(f==="autre") return `${niv} ${autre ? esc(autre) : ph("nom de la formation")}`;
+  if(n.startsWith("cap")) return `${niv} CAP ${esc(FNOM[f]||"")}`;
+  if(f==="mrc") return `seconde professionnelle ${esc(FNOM.mrc)}`;
+  return `${niv} baccalauréat professionnel ${esc(FNOM[f]||"")}`;
+}
+function fillFilieres(keep){
+  const n = $("niveau").value, sel = $("filiere");
+  const list = FILIERES[n] || [];
+  sel.innerHTML = list.length ? list.map(([v,l]) => `<option value="${v}">${esc(l)}</option>`).join("") : `<option value="">Choisis d'abord ton niveau</option>`;
+  if(keep && list.some(x => x[0]===keep)) sel.value = keep;
+}
+function formation(){
+  const n = $("niveau").value;
+  return n ? formText(n, $("filiere").value, val("filiereAutre")) : ph("ton niveau et ta filière");
+}
+
+/* Listes de choix */
+const QUALITES = [
+  ["sérieux","sérieuse"],["ponctuel","ponctuelle"],["souriant","souriante"],["poli","polie"],
+  ["dynamique","dynamique"],["motivé","motivée"],["curieux","curieuse"],["organisé","organisée"],
+  ["à l'écoute","à l'écoute"],["patient","patiente"],["rigoureux","rigoureuse"],["autonome","autonome"],
+  ["sociable","sociable"],["aimable","aimable"]
+];
+const COMPETENCES = ["Accueillir et renseigner un client","Conseiller un client","Encaisser un client","Mettre en valeur des produits","Mettre en rayon et faire le réassort","Réceptionner des marchandises","Répondre au téléphone","Travailler en équipe","Respecter les consignes","Respecter les règles d'hygiène et de sécurité"];
+const INFO = ["Traitement de texte (Word)","Tableur (Excel)","Présentation (PowerPoint)","Internet et messagerie","Réseaux sociaux","Canva"];
+const CERTIFS = ["ASSR 2 (Attestation scolaire de sécurité routière de niveau 2)","PSC1 (Prévention et secours civiques de niveau 1)","SST (Sauveteur secouriste du travail)","BAFA","Certification Pix"];
+const MOBILITE = ["Transports en commun","Vélo","Scooter","Permis AM","Permis B en cours (conduite accompagnée)","Permis B"];
+const MISSIONS = ["Accueil de la clientèle","Conseil et vente","Encaissement","Mise en rayon et réassort","Réception des marchandises","Étiquetage des produits","Inventaire","Entretien de l'espace de vente","Accueil téléphonique","Orientation des visiteurs","Classement et archivage","Préparation de commandes","Mise en place de la vitrine","Observation des métiers de l'entreprise"];
+const EXP_TYPES = ["Stage d'observation de 3e","PFMP","Job d'été / emploi saisonnier","Bénévolat","Autre expérience"];
+const LANGUES = ["Anglais","Espagnol","Allemand","Italien","Portugais","Arabe","Turc","Russe","Chinois","Autre"];
+const NIVEAUX_L = ["Notions","Niveau scolaire","Bon niveau","Courant","Langue maternelle"];
+const COULEURS = [["Bleu marine","#1f3a68","#eaf0f8"],["Vert sapin","#1e5a47","#e8f3ee"],["Bordeaux","#7a1f3a","#f7e9ee"],["Anthracite","#333a44","#eef0f3"],["Pétrole","#0f5e6e","#e6f3f5"]];
+
+const PROFILS = [
+  () => `${G("Élève motivé","Élève motivée")} en ${formation()}, je recherche une période de formation en milieu professionnel afin de développer mes compétences en relation client.`,
+  () => `J'aime le contact avec la clientèle et le travail en équipe. Je souhaite découvrir le monde professionnel et mettre en pratique ce que j'apprends au lycée.`,
+  () => `${G("Curieux","Curieuse")} et ${G("impliqué","impliquée")}, je souhaite apprendre les métiers du commerce, de la vente et de l'accueil au sein d'une équipe professionnelle.`
+];
+
+function chips(boxId, list, name){
+  $(boxId).innerHTML = list.map((t,i) => `<label><input type="checkbox" name="${name}" value="${i}"><span data-c="${name}-${i}">${esc(Array.isArray(t)?t[0]:t)}</span></label>`).join("");
+}
+function checked(name){ return [...document.querySelectorAll(`input[name="${name}"]:checked`)].map(i => +i.value); }
+
+/* État des listes dynamiques */
+const newForm = () => ({niv:"",fil:"",autre:"",etab:"",ville:"",annee:""});
+let state = { forms:[newForm()], exps:[], langs:[{l:"Anglais",n:"Niveau scolaire",autre:""}], photo:"" };
+
+function renderForms(){
+  $("formsList").innerHTML = state.forms.map((f,i) => `
+    <div class="item">
+      <div class="itemHead">Formation ${i+1}<button type="button" class="btn-sec small" data-del="forms" data-i="${i}">Supprimer</button></div>
+      <div class="grid2">
+        <label class="f">Niveau
+          <select data-list="forms" data-i="${i}" data-f="niv">${NIV_PREV.map(([v,l]) => `<option value="${v}" ${v===f.niv?"selected":""}>${l}</option>`).join("")}</select>
+        </label>
+        <label class="f">Filière
+          <select data-list="forms" data-i="${i}" data-f="fil" ${FILIERES[f.niv]?"":"disabled"}>${FILIERES[f.niv] ? FILIERES[f.niv].map(([v,l]) => `<option value="${v}" ${v===f.fil?"selected":""}>${esc(l)}</option>`).join("") : `<option value="">${f.niv?"Pas de filière":"Choisis d'abord le niveau"}</option>`}</select>
+        </label>
+        ${f.fil==="autre" && FILIERES[f.niv] ? `<label class="f full">Nom complet de la formation<input type="text" data-list="forms" data-i="${i}" data-f="autre" value="${esc(f.autre)}" placeholder="ex. : baccalauréat professionnel Logistique"></label>` : ""}
+        <label class="f">Établissement<input type="text" data-list="forms" data-i="${i}" data-f="etab" value="${esc(f.etab)}" placeholder="ex. : Collège Victor Hugo"></label>
+        <label class="f">Ville<input type="text" data-list="forms" data-i="${i}" data-f="ville" value="${esc(f.ville)}"></label>
+        <label class="f">Année scolaire
+          <select data-list="forms" data-i="${i}" data-f="annee"><option value="">Choisis…</option>${yearsOpts(f.annee, SY-8, SY)}</select>
+        </label>
+      </div>
+    </div>`).join("");
+  $("addForm").style.display = state.forms.length>=3 ? "none" : "";
+}
+function renderExps(){
+  $("expsList").innerHTML = state.exps.map((e,i) => `
+    <div class="item">
+      <div class="itemHead">Expérience ${i+1}<button type="button" class="btn-sec small" data-del="exps" data-i="${i}">Supprimer</button></div>
+      <div class="grid2">
+        <label class="f">Type
+          <select data-list="exps" data-i="${i}" data-f="type">${EXP_TYPES.map(t => `<option ${t===e.type?"selected":""}>${esc(t)}</option>`).join("")}</select>
+        </label>
+        <span></span>
+        <label class="f">Du<input type="date" data-list="exps" data-i="${i}" data-f="du" value="${esc(e.du||"")}"></label>
+        <label class="f">Au<input type="date" data-list="exps" data-i="${i}" data-f="au" value="${esc(e.au||"")}"></label>
+        <label class="f">Entreprise ou organisme<input type="text" data-list="exps" data-i="${i}" data-f="ent" value="${esc(e.ent)}" placeholder="ex. : Carrefour Market"></label>
+        <label class="f">Ville<input type="text" data-list="exps" data-i="${i}" data-f="ville" value="${esc(e.ville)}"></label>
+      </div>
+      <div class="q">Ce que j'ai fait</div>
+      <div class="chips">${MISSIONS.map((m,j) => `<label><input type="checkbox" data-list="exps" data-i="${i}" data-f="missions" value="${j}" ${e.missions.includes(j)?"checked":""}><span>${esc(m)}</span></label>`).join("")}</div>
+      <label class="f" style="margin-top:8px">Autre mission (facultatif)<input type="text" data-list="exps" data-i="${i}" data-f="autre" value="${esc(e.autre)}" placeholder="ex. : Aide à l'emballage des cadeaux"></label>
+    </div>`).join("");
+  $("addExp").style.display = state.exps.length>=4 ? "none" : "";
+}
+function renderLangs(){
+  $("langs").innerHTML = state.langs.map((g,i) => `
+    <div class="lang">
+      <select data-list="langs" data-i="${i}" data-f="l" aria-label="Langue ${i+1}"><option value="">Aucune</option>${LANGUES.map(l => `<option ${l===g.l?"selected":""}>${l}</option>`).join("")}</select>
+      <select data-list="langs" data-i="${i}" data-f="n" aria-label="Niveau langue ${i+1}">${NIVEAUX_L.map(n => `<option ${n===g.n?"selected":""}>${n}</option>`).join("")}</select>
+      ${g.l==="Autre" ? `<input type="text" class="full" style="grid-column:1/-1" data-list="langs" data-i="${i}" data-f="autre" value="${esc(g.autre||"")}" placeholder="Quelle langue ?">` : ""}
+    </div>`).join("");
+}
+function ensureLangRows(){
+  while(state.langs.length<3) state.langs.push({l:"",n:"Niveau scolaire",autre:""});
+}
+
+/* Rendu du CV */
+function sideBlock(title, html){ return html ? `<div class="blk"><h3>${title}</h3>${html}</div>` : ""; }
+function list(items){ return items.length ? `<ul>${items.map(x => `<li>${x}</li>`).join("")}</ul>` : ""; }
+
+function render(){
+  $("wrapFiliereAutre").style.display = $("filiere").value==="autre" ? "" : "none";
+  const col = COULEURS[+(radio("couleur")||0)];
+  const cv = $("cv");
+  cv.style.setProperty("--acc", col[1]); cv.style.setProperty("--tint", col[2]);
+
+  const nQ = checked("qual").length, qc = $("qCount");
+  qc.textContent = nQ ? `${nQ} qualité${nQ>1?"s":""} choisie${nQ>1?"s":""}` + (nQ>5?" : c'est beaucoup, garde les 3 à 5 qui te ressemblent le plus.":"") : "Aucune qualité choisie pour l'instant.";
+  qc.classList.toggle("warn", nQ>5);
+
+  // labels des qualités selon le genre
+  QUALITES.forEach(([m,f],i) => { const el = document.querySelector(`[data-c="qual-${i}"]`); if(el) el.textContent = G(m,f); });
+  PROFILS.forEach((fn,i) => { const el = document.querySelector(`[data-prof="${i}"]`); if(el) el.innerHTML = fn(); });
+
+  // Colonne gauche
+  const contact = [
+    `<p>${V("tel","téléphone")}</p>`,
+    `<p>${V("mail","e-mail")}</p>`,
+    `<p>${V("adresse","adresse")}<br>${V("cp","code postal")} ${V("ville","ville")}</p>`,
+    naissance()
+  ].join("");
+  const quals = checked("qual").map(i => esc(cap(G(...QUALITES[i]))));
+  const langs = state.langs.filter(g => g.l).map(g => `<span class="lbl">${g.l==="Autre" ? (g.autre ? esc(g.autre) : ph("langue")) : esc(g.l)}</span> : ${esc(g.n.toLowerCase())}`);
+  const infos = checked("info").map(i => esc(INFO[i]));
+  const mob = checked("mob").map(i => esc(MOBILITE[i]));
+  const cis = ["ci1","ci2","ci3"].map(val).filter(Boolean).map(esc);
+
+  const side = `
+    ${state.photo ? `<img class="photo" src="${state.photo}" alt="">` : ""}
+    ${sideBlock("Contact", contact)}
+    ${sideBlock("Qualités", quals.length ? list(quals) : `<p>${ph("tes qualités")}</p>`)}
+    ${sideBlock("Langues", list(langs))}
+    ${sideBlock("Informatique", list(infos))}
+    ${sideBlock("Mobilité", list(mob))}
+    ${sideBlock("Centres d'intérêt", list(cis))}
+  `;
+
+  // Colonne principale
+  const nomAff = `${V("prenom","Prénom")} ${val("nom") ? esc(val("nom").toUpperCase()) : ph("NOM")}`;
+  const profilIdx = Math.min(+(radio("profil")||0), PROFILS.length-1);
+  const profil = PROFILS[profilIdx]();
+
+  const formCur = `<div class="entry"><div class="row"><span>${cap(formation())}</span><span class="d">${V("anneeSco","année scolaire")}</span></div><p class="sub">${V("lycee","nom du lycée")}, ${V("villeLycee","ville du lycée")}</p></div>`;
+  const formPrev = state.forms.filter(f => f.niv||f.etab||f.ville||f.annee).map(f => {
+    const t = f.niv ? cap(formText(f.niv, f.fil, f.autre)) : ph("niveau");
+    const lieu = [f.etab ? esc(f.etab) : ph("établissement"), f.ville ? esc(f.ville) : ph("ville")].join(", ");
+    return `<div class="entry"><div class="row"><span>${t}</span><span class="d">${f.annee?esc(f.annee):ph("année")}</span></div><p class="sub">${lieu}</p></div>`;
+  }).join("");
+
+  const exps = state.exps.filter(e => e.ent||e.du||e.au||e.missions.length||e.autre).map(e => {
+    const miss = e.missions.map(j => esc(MISSIONS[j]));
+    if(e.autre) miss.push(esc(cap(e.autre)));
+    return `<div class="entry"><div class="row"><span>${esc(e.type)} : ${e.ent?esc(e.ent):ph("entreprise")}${e.ville?", "+esc(e.ville):""}</span><span class="d">${plage(e.du, e.au)}</span></div>${list(miss)}</div>`;
+  }).join("");
+
+  const comps = checked("comp").map(i => esc(COMPETENCES[i]));
+  const dipl = [];
+  if(val("dnb")) dipl.push(`Diplôme national du brevet : ${esc(val("dnb").toLowerCase())}${val("dnbAnnee")?" ("+esc(val("dnbAnnee"))+")":""}`);
+  checked("cert").forEach(i => dipl.push(esc(CERTIFS[i])));
+
+  const main = `
+    <h2 class="name">${nomAff}</h2>
+    <p class="forma">${cap(formation())}</p>
+    <div class="search">Recherche une PFMP ${periode()}</div>
+    ${profil ? `<div class="blk"><h3>Profil</h3><p>${profil}</p></div>` : ""}
+    <div class="blk"><h3>Formation</h3>${formCur}${formPrev}</div>
+    ${exps ? `<div class="blk"><h3>Expériences</h3>${exps}</div>` : ""}
+    ${comps.length ? `<div class="blk"><h3>Compétences</h3><ul class="cols">${comps.map(c=>`<li>${c}</li>`).join("")}</ul></div>` : ""}
+    ${dipl.length ? `<div class="blk"><h3>Diplômes et attestations</h3>${list(dipl)}</div>` : ""}
+  `;
+  cv.innerHTML = `<aside class="side">${side}</aside><div class="main">${main}</div>`;
+
+  checkPage();
+  updateStatus();
+  save();
+}
+
+function checkPage(){
+  const cv = $("cv"), info = $("pageInfo");
+  if(window.matchMedia && window.matchMedia("(max-width:640px)").matches){ info.textContent = "Format A4"; info.classList.remove("over"); return; }
+  const ratio = cv.scrollHeight / cv.offsetWidth;
+  const over = ratio > (297/210) + 0.01;
+  info.textContent = over ? "Ton CV dépasse une page : enlève quelques éléments." : "Format A4 : tient sur une page";
+  info.classList.toggle("over", over);
+}
+
+/* Champs manquants */
+const REQUIRED = [
+  ["prenom","Ton prénom",1],["nom","Ton nom",1],["adresse","Ton adresse",1],["cp","Ton code postal",1],["ville","Ta ville",1],
+  ["tel","Ton téléphone",1],["mail","Ton e-mail",1],
+  ["niveau","Ton niveau",2],["lycee","Le nom du lycée",2],["villeLycee","La ville du lycée",2],["anneeSco","L'année scolaire",2],
+  ["d1","La date de début de PFMP",2],["d2","La date de fin de PFMP",2]
+];
+function missingList(){
+  const m = REQUIRED.filter(([id]) => !val(id)).map(r => r.slice(1));
+  if(!radio("genre")) m.push(["Le choix féminin / masculin (étape 1)",1]);
+  if($("filiere").value==="autre" && !val("filiereAutre")) m.push(["Le nom complet de ta formation",2]);
+  if(val("d1") && val("d2") && val("d1") > val("d2")) m.push(["La date de fin de PFMP est avant la date de début",2]);
+  state.forms.forEach((f,i) => {
+    if(f.niv||f.etab||f.ville||f.annee){
+      if(!f.niv||!f.etab||!f.ville||!f.annee) m.push([`Formation précédente ${i+1} : niveau, établissement, ville ou année`,2]);
+      if(f.fil==="autre" && !f.autre) m.push([`Formation précédente ${i+1} : nom complet de la formation`,2]);
+    }
+  });
+  state.exps.forEach((e,i) => {
+    if(e.ent||e.du||e.au||e.missions.length||e.autre){
+      if(!e.ent||!e.du||!e.au) m.push([`Expérience ${i+1} : entreprise ou dates`,3]);
+      else if(e.du > e.au) m.push([`Expérience ${i+1} : la date de fin est avant la date de début`,3]);
+    }
+  });
+  if(!checked("qual").length) m.push(["Au moins une qualité (étape 4)",4]);
+  if(state.langs.some(g => g.l==="Autre" && !g.autre)) m.push(["Le nom de la langue « Autre »",4]);
+  return m;
+}
+function updateStatus(){
+  const m = missingList();
+  [1,2,3,4,5].forEach(n => {
+    const st = $("st"+n); if(!st) return;
+    const left = m.filter(x => x[1]===n).length;
+    if(n===3 && !state.exps.length){ st.textContent = "Facultatif"; st.classList.remove("done"); return; }
+    if(n===5){ st.textContent = "Facultatif"; st.classList.remove("done"); return; }
+    st.textContent = left ? `${left} à compléter` : "Complet";
+    st.classList.toggle("done", !left);
+  });
+}
+
+/* Sauvegarde locale */
+const KEY = "cv-pfmp-v2";
+function save(){
+  try{
+    const data = {};
+    document.querySelectorAll(".formCol input, .formCol select, .formCol textarea").forEach(el => {
+      if(el.dataset.list || el.type==="file") return;
+      if(el.type==="radio"){ if(el.checked) data["r:"+el.name] = el.value; }
+      else if(el.type==="checkbox"){ if(el.checked) (data["c:"+el.name] = data["c:"+el.name] || []).push(el.value); }
+      else if(el.id){ data[el.id] = el.value; }
+    });
+    data.__state = state;
+    localStorage.setItem(KEY, JSON.stringify(data));
+  }catch(e){ $("saved").textContent = "Ton travail n'est pas gardé automatiquement (ou la photo est trop lourde) : pense à enregistrer ton PDF avant de fermer la page."; }
+}
+function load(){
+  let data = null;
+  try{ data = JSON.parse(localStorage.getItem(KEY) || "null"); }catch(e){ data = null; }
+  if(!data) return null;
+  if(data.__state) state = Object.assign(state, data.__state);
+  Object.entries(data).forEach(([k,v]) => {
+    if(k==="__state") return;
+    if(k.startsWith("r:")){
+      const r = document.querySelector(`input[name="${k.slice(2)}"][value="${CSS.escape(v)}"]`); if(r) r.checked = true;
+    } else if(k.startsWith("c:")){
+      v.forEach(x => { const c = document.querySelector(`input[name="${k.slice(2)}"][value="${CSS.escape(x)}"]`); if(c) c.checked = true; });
+    } else if($(k) && $(k).type!=="file"){ $(k).value = v; }
+  });
+  return data;
+}
+
+/* Photo : réduite pour rester légère */
+$("photoFile").addEventListener("change", e => {
+  const file = e.target.files && e.target.files[0]; if(!file) return;
+  const reader = new FileReader();
+  reader.onload = () => {
+    const img = new Image();
+    img.onload = () => {
+      const W = 300, H = 370, c = document.createElement("canvas"); c.width = W; c.height = H;
+      const r = Math.max(W/img.width, H/img.height), w = img.width*r, h = img.height*r;
+      c.getContext("2d").drawImage(img, (W-w)/2, (H-h)/2, w, h);
+      state.photo = c.toDataURL("image/jpeg", .82);
+      showPhotoMini(); render();
+    };
+    img.src = reader.result;
+  };
+  reader.readAsDataURL(file);
+});
+function showPhotoMini(){
+  $("photoMini").style.display = state.photo ? "" : "none";
+  if(state.photo) $("photoMini").src = state.photo;
+  $("photoDel").style.display = state.photo ? "" : "none";
+}
+$("photoDel").addEventListener("click", () => { state.photo = ""; $("photoFile").value = ""; showPhotoMini(); render(); });
+
+/* Construction */
+chips("qualites", QUALITES, "qual");
+chips("competences", COMPETENCES, "comp");
+chips("info", INFO, "info");
+chips("certifs", CERTIFS, "cert");
+chips("mobilite", MOBILITE, "mob");
+$("o-profil").innerHTML = PROFILS.map((f,i) => `<label class="opt"><input type="radio" name="profil" value="${i}" ${i===0?"checked":""}><span data-prof="${i}"></span></label>`).join("");
+$("swatches").innerHTML = COULEURS.map(([n,a],i) => `<label class="swatch"><input type="radio" name="couleur" value="${i}" ${i===0?"checked":""}><i style="background:${a}"></i>${n}</label>`).join("");
+$("anneeSco").innerHTML = yearsOpts(`${SY}-${SY+1}`, SY-1, SY+1);
+fillFilieres();
+const saved = load();
+fillFilieres(saved && saved.filiere);
+ensureLangRows();
+renderForms(); renderExps(); renderLangs(); showPhotoMini();
+
+$("niveau").addEventListener("change", () => fillFilieres());
+const formCol = document.querySelector(".formCol");
+function onEdit(e){
+  const t = e.target, L = t.dataset.list;
+  if(L){
+    const i = +t.dataset.i, f = t.dataset.f, obj = state[L][i];
+    if(f==="missions"){
+      const j = +t.value;
+      obj.missions = t.checked ? [...new Set([...obj.missions, j])].sort((a,b)=>a-b) : obj.missions.filter(x => x!==j);
+    } else obj[f] = t.value;
+    if(L==="forms" && f==="niv"){ obj.fil = FILIERES[obj.niv] ? FILIERES[obj.niv][0][0] : ""; obj.autre = ""; }
+    if(L==="forms" && (f==="niv"||f==="fil") && e.type==="change"){
+      renderForms();
+      const back = document.querySelector(`[data-list="forms"][data-i="${i}"][data-f="${f}"]`); if(back) back.focus();
+    }
+    if(L==="langs" && f==="l" && e.type==="change") renderLangs();
+  }
+  render();
+}
+formCol.addEventListener("input", onEdit);
+formCol.addEventListener("change", onEdit);
+formCol.addEventListener("click", e => {
+  const b = e.target.closest("[data-del]"); if(!b) return;
+  state[b.dataset.del].splice(+b.dataset.i, 1);
+  renderForms(); renderExps(); render();
+});
+$("addForm").addEventListener("click", () => { state.forms.push(newForm()); renderForms(); render(); });
+$("addExp").addEventListener("click", () => { state.exps.push({type:EXP_TYPES[0],du:"",au:"",ent:"",ville:"",missions:[],autre:""}); renderExps(); render(); });
+window.addEventListener("resize", checkPage);
+if(document.fonts && document.fonts.ready) document.fonts.ready.then(checkPage);
+render();
+
+$("btnPdf").addEventListener("click", () => {
+  const m = missingList(), box = $("missing");
+  if(m.length){
+    box.innerHTML = `<strong>Il manque encore :</strong><ul>${m.map(x=>`<li>${esc(x[0])}</li>`).join("")}</ul><p style="margin:8px 0 0">Complète ces éléments, puis clique de nouveau sur « Enregistrer en PDF ».</p>`;
+    box.classList.add("show");
+    return;
+  }
+  box.classList.remove("show");
+  const old = document.title;
+  document.title = `CV_${val("nom")}_${val("prenom")}`.replace(/\s+/g,"_");
+  try{ window.print(); }catch(e){}
+  setTimeout(() => { document.title = old; }, 1000);
+});
+$("btnReset").addEventListener("click", () => {
+  if(!confirm("Effacer tout ton CV et recommencer ?")) return;
+  try{ localStorage.removeItem(KEY); }catch(e){}
+  location.reload();
+});
+})();
+</script>
+</body>
+</html>
